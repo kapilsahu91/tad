@@ -21,6 +21,18 @@ public interface Constants {
 	public static final String TIME = "TIME";
 	public static final String DATA = "DATA";
 	public static final String XAXIS = "XAXIS";
+	public static final String SEN_ID = "SEN_ID";
+	public static final String ASSET_ID = "ASSET_ID";
+	public static final String SENSOR_ID = "sensor_id";
+	public static final String SENSOR_DATA = "sensor_data";
+	public static final String TIMESTAMP = "timestamp";
+	
+	public static final String NEW_LINE = "\\n";
+	
+	public static final String ISO_DATE_FORMAT_WITH_MILLIS = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+	public static final String ISO_DATE_FORMAT_WITHOUT_MILLIS = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+	public static final int METRIC_ID_PERCENTAGE = 1;
+	public static final int METRIC_ID_VOLUME = 2;
 	
 
 }
