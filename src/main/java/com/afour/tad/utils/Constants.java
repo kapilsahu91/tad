@@ -23,9 +23,9 @@ public interface Constants {
 	public static final String XAXIS = "XAXIS";
 	public static final String SEN_ID = "SEN_ID";
 	public static final String ASSET_ID = "ASSET_ID";
-	public static final String SENSOR_ID = "sensor_id";
-	public static final String SENSOR_DATA = "sensor_data";
-	public static final String TIMESTAMP = "timestamp";
+	public static final String SENSOR_ID = "sid";
+	public static final String SENSOR_DATA = "dt";
+	public static final String TIMESTAMP = "ts";
 	
 	public static final String NEW_LINE = "\\n";
 	
