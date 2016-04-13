@@ -36,12 +36,19 @@ public class Utils {
 			System.out.println(sensorChannel);
 	}
 	
+	/**
+	 * Method to get Date String in ISO format.
+	 * @param dataDate
+	 * @return
+	 */
 	public static Date getDateStringInISO(Date dataDate) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
 		DateTimeFormatter dateTimeFormat = ISODateTimeFormat.dateTime();
 		DateTime result = dateTimeFormat.parseDateTime(format.format(dataDate));
 		return result.toDate();
 	}
+	
+	
     public static Date getDataDateFromFeed(Object object) {
 		String created_at = (String)object;
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);

@@ -16,6 +16,7 @@ import org.json.simple.parser.JSONParser;
 
 import com.afour.tad.utils.Constants;
 import com.afour.tad.utils.MongoDBConnection;
+import com.afour.tad.utils.Utils;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBObject;
@@ -195,11 +196,11 @@ public class MetricsProcessingBolt extends BaseRichBolt {
 		dbObject.put(Constants.APP_ID, appId);
 		dbObject.put(Constants.FREQUENCY, frequency);
 		dbObject.put(Constants.DELETE, isDelete);
-		dbObject.put(Constants.CREATED_DATE,getDateStringInISO(new Date()));
-		dbObject.put(Constants.MODIFY_DATE, getDateStringInISO(new Date()));
+		dbObject.put(Constants.CREATED_DATE,Utils.getDateStringInISO(new Date()));
+		dbObject.put(Constants.MODIFY_DATE, Utils.getDateStringInISO(new Date()));
 		dbObject.put(Constants.SEN_ID, sensorId);
 		dbObject.put(Constants.ASSET_ID, sensorId);
-		dbObject.put(Constants.DATA_DATE, getDateStringInISO(dataDate));
+		dbObject.put(Constants.DATA_DATE, Utils.getDateStringInISO(dataDate));
 		
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(dataDate);  
@@ -223,12 +224,6 @@ public class MetricsProcessingBolt extends BaseRichBolt {
 	 * @param dataDate
 	 * @return
 	 */
-	private static Date getDateStringInISO(Date dataDate) {
-		SimpleDateFormat format = new SimpleDateFormat(Constants.ISO_DATE_FORMAT_WITH_MILLIS, Locale.US);
-		DateTimeFormatter dateTimeFormat = ISODateTimeFormat.dateTime();
-		DateTime result = dateTimeFormat.parseDateTime(format.format(dataDate));
-		return result.toDate();
-	}
 
 	/**
 	 * Decide whether or not this input tuple should trigger a Mongo write.
