@@ -2,13 +2,17 @@ package com.afour.tad.utils;
 
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
-
+import org.apache.storm.shade.org.joda.time.DateTime;
+import org.apache.storm.shade.org.joda.time.format.DateTimeFormatter;
+import org.apache.storm.shade.org.joda.time.format.ISODateTimeFormat;
 import com.mongodb.DB;
-import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
@@ -30,6 +34,24 @@ public class Utils {
 			}
 			
 			System.out.println(sensorChannel);
+	}
+	
+	public static Date getDateStringInISO(Date dataDate) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+		DateTimeFormatter dateTimeFormat = ISODateTimeFormat.dateTime();
+		DateTime result = dateTimeFormat.parseDateTime(format.format(dataDate));
+		return result.toDate();
+	}
+    public static Date getDataDateFromFeed(Object object) {
+		String created_at = (String)object;
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
+		Date date = null;
+		try {
+			date = format.parse(created_at);
+		} catch (java.text.ParseException e) {
+			e.printStackTrace();
+		}
+		return date;
 	}
     private static final Random random = new Random();
     public static String getMacAddress() {
