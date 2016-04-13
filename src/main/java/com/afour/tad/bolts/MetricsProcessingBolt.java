@@ -1,16 +1,11 @@
 package com.afour.tad.bolts;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
-import org.apache.storm.shade.org.joda.time.DateTime;
-import org.apache.storm.shade.org.joda.time.format.DateTimeFormatter;
-import org.apache.storm.shade.org.joda.time.format.ISODateTimeFormat;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -150,12 +145,11 @@ public class MetricsProcessingBolt extends BaseRichBolt {
 		
 		volumeDBObject.put(Constants.METRIC_ID, Constants.METRIC_ID_VOLUME);
 
-		int percentageData = getPercentageFromData(sensorData);
-		volumeDBObject.put(Constants.DATA, percentageData);
+		int volumeData = getVolumeFromData(sensorData);
+		volumeDBObject.put(Constants.DATA, volumeData);
 		
 		return volumeDBObject;
 	}
-
 	
 	/**
 	 * Method to get db object for storing percentage information.
@@ -213,11 +207,20 @@ public class MetricsProcessingBolt extends BaseRichBolt {
 	 * @param data
 	 * @return
 	 */
-	private int getPercentageFromData(Object data) {
-		int cmData = Integer.parseInt(data.toString().replace(Constants.NEW_LINE, "").trim());
+	private int getPercentageFromData(Object sensorData) {
+		int cmData = Integer.parseInt(sensorData.toString().replace(Constants.NEW_LINE, "").trim());
 		return cmData;
 	}
 	
+	/**
+	 * Method to calculate volume for given data
+	 * @param sensorData
+	 * @return
+	 */
+	private int getVolumeFromData(Object sensorData) {
+		int cmData = Integer.parseInt(sensorData.toString().replace(Constants.NEW_LINE, "").trim());
+		return cmData;
+	}
 	
 	/**
 	 * Method to get Date String in ISO format.
