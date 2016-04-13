@@ -18,7 +18,7 @@ import com.mongodb.DBObject;
 
 public class Utils {
 	
-	public static Map<String,HashMap<String, String>> sensorChannel = new HashMap<>();
+	public static  Map<String,HashMap<String, String>> sensorChannel = new HashMap<>();
 	public static DB mongoDb= MongoDBConnection.getMongoInstance().getMongoDb();
 	static{
 			DBCursor dbCollection = mongoDb.getCollection("IOT_SENSORS").find();
